@@ -3,12 +3,12 @@ import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 
 const transporter = nodemailer.createTransport({
-  host: `${process.env.SMTP_HOST}`,
-  port: Number(process.env.SMTP_PORT) || 587,
+  host: `smtp.office365.com`,
+  port: 587,
   secure: false,
   auth: {
-    user: `${process.env.SMTP_EMAIL}`,
-    pass: `${process.env.SMTP_PASSWORD}`,
+    user: `no-reply-monitor@bnext.mx`,
+    pass: `L@680369510407ot`,
   },
   tls: {
     // no usar rejectUnauthorized: false en producción a menos que entiendas el riesgo.
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
     for (const to of TO_INFO) {
       await new Promise((resolve, reject) => {
         transporter.sendMail({
-          from: `"${process.env.SMTP_NAME}" <${process.env.SMTP_EMAIL}>`,
+          from: `"Bnext Observe" <no-reply-monitor@bnext.mx>`,
           to: `${to.name} <${to.email}>`,
           subject: `Solicitud de Información sobre Bnext Observe`, // asunto
           //text: 'Hola, este es un correo de prueba desde la landing de Bnext Observe.', // texto plano
@@ -241,3 +241,4 @@ function getTemplate(name: string, company: string, email: string, phone: string
 
   `
 }
+
