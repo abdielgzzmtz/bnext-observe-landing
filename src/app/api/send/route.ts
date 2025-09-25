@@ -6,7 +6,6 @@ const transporter = nodemailer.createTransport({
   host: `smtp.office365.com`,
   port: 587,
   secure: false,
-  requireTLS: true,       // fuerza STARTTLS
   auth: {
     user: `no-reply-monitor@bnext.mx`,
     pass: `L@680369510407ot`,
@@ -242,5 +241,6 @@ function getTemplate(name: string, company: string, email: string, phone: string
 
   `
 }
+
 
 
