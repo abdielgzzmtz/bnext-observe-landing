@@ -12,9 +12,7 @@ const transporter = nodemailer.createTransport({
   },
   tls: {
     // no usar rejectUnauthorized: false en producción a menos que entiendas el riesgo.
-    // ciphers: 'TLSv1.2' // opcional si tu servidor lo requiere
-    
-    ciphers: 'TLSv1.2' // opcional si tu servidor lo requiere
+    //ciphers: 'TLSv1.2' // opcional si tu servidor lo requiere
   },
 });
 
@@ -30,22 +28,29 @@ export async function POST(req: Request) {
     const { name, company, email, phone, msg } = body;
 
     for (const to of TO_INFO) {
-
-      await transporter.sendMail({
-        from: `"${process.env.SMTP_NAME}" <${process.env.SMTP_EMAIL}>`,
-        to: `${to.name} <${to.email}>`,
-        subject: `Solicitud de Información sobre Bnext Observe`, // asunto
-        //text: 'Hola, este es un correo de prueba desde la landing de Bnext Observe.', // texto plano
-        html: getTemplate(name, company, email, phone, msg, to.name), // html body
-        attachments: [
-          { filename: 'Logo Bnext Blanco', path: './public/bnext.png', cid: 'logo' },
-          { filename: 'Logo Bnext Negro', path: './public/bnext-black.png', cid: 'logo-black' },
-          { filename: 'Logo Facebook', path: './public/social/facebook.png', cid: 'facebook' },
-          { filename: 'Logo Instagram', path: './public/social/instagram.png', cid: 'instagram' },
-          { filename: 'Logo LinkedIn', path: './public/social/linkedin.png', cid: 'linkedin' },
-        ],
+      await new Promise((resolve, reject) => {
+        transporter.sendMail({
+          from: `"${process.env.SMTP_NAME}" <${process.env.SMTP_EMAIL}>`,
+          to: `${to.name} <${to.email}>`,
+          subject: `Solicitud de Información sobre Bnext Observe`, // asunto
+          //text: 'Hola, este es un correo de prueba desde la landing de Bnext Observe.', // texto plano
+          html: getTemplate(name, company, email, phone, msg, to.name), // html body
+          attachments: [
+            { filename: 'Logo Bnext Blanco', path: './public/bnext.png', cid: 'logo' },
+            { filename: 'Logo Bnext Negro', path: './public/bnext-black.png', cid: 'logo-black' },
+            { filename: 'Logo Facebook', path: './public/social/facebook.png', cid: 'facebook' },
+            { filename: 'Logo Instagram', path: './public/social/instagram.png', cid: 'instagram' },
+            { filename: 'Logo LinkedIn', path: './public/social/linkedin.png', cid: 'linkedin' },
+          ],
+        }, (err, info) => {
+          if (err) {
+            console.error(err);
+            reject(err);
+          } else {
+            resolve(info);
+          }
+        });
       });
-
     }
 
     return NextResponse.json({ ok: true });
@@ -235,7 +240,4 @@ function getTemplate(name: string, company: string, email: string, phone: string
 </html>
 
   `
-
 }
-
-
