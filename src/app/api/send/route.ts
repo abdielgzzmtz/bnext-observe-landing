@@ -17,8 +17,8 @@ const transporter = nodemailer.createTransport({
 });
 
 const TO_INFO = [
-  //{ name: 'Oscar Infante', email: 'oinfante@bnext.mx' },
-  //{ name: 'Juan Cortina', email: 'jcortina@bnext.mx' }
+  { name: 'Oscar Infante', email: 'oinfante@bnext.mx' },
+  { name: 'Juan Cortina', email: 'jcortina@bnext.mx' },
   { name: 'Abdiel González', email: 'amartinez@bnext.mx' }
 ];
 
@@ -233,4 +233,5 @@ function getTemplate(name: string, company: string, email: string, phone: string
 </html>
 
   `
+
 }
