@@ -1,5 +1,6 @@
 import { InfiniteSlider } from '@/components/ui/infinite-slider'
 import { ProgressiveBlur } from '@/components/ui/progressive-blur'
+import Image from 'next/image'
 
 export default function LogoCloud() {
     return (
@@ -14,60 +15,60 @@ export default function LogoCloud() {
                             speedOnHover={20}
                             speed={40}
                             gap={112}>
-                            <div className="flex">
+                            <div className="flex shrink-0">
                                 <img
-                                    className="mx-auto h-8 w-fit grayscale dark:invert"
+                                    className="mx-auto h-8 grayscale dark:invert"
                                     src="/clients/oxxo.png"
                                     alt="Oxxo Logo"
                                     height="20"
-                                    width="auto"
+                                    width="80"
                                 />
                             </div>
 
-                            <div className="flex">
+                            <div className="flex shrink-0">
                                 <img
-                                    className="mx-auto h-8 w-fit dark:invert"
+                                    className="mx-auto h-8 dark:invert"
                                     src="/clients/six.png"
                                     alt="Tiendas SIX Logo"
                                     height="20"
-                                    width="auto"
+                                    width="80"
                                 />
                             </div>
-                            <div className="flex">
-                                <img
-                                    className="mx-auto h-10 w-fit dark:invert"
+                            <div className="flex shrink-0">
+                                <Image
+                                    className="mx-auto h-10 dark:invert"
                                     src="/clients/bafar.png"
                                     alt="Grupo Bafar Logo"
                                     height="20"
-                                    width="auto"
+                                    width="80"
                                 />
                             </div>
 
-                            <div className="flex">
-                                <img
-                                    className="mx-auto h-8 w-fit dark:invert"
+                            <div className="flex shrink-0">
+                                <Image
+                                    className="mx-auto h-8 dark:invert"
                                     src="/clients/finsa.png"
                                     alt="Finsa Logo"
                                     height="16"
-                                    width="auto"
+                                    width="80"
                                 />
                             </div>
-                            <div className="flex">
-                                <img
-                                    className="mx-auto h-8 w-fit dark:invert"
+                            <div className="flex shrink-0">
+                                <Image
+                                    className="mx-auto h-8 dark:invert"
                                     src="/clients/ace-hardware.png"
                                     alt="Laravel Logo"
                                     height="16"
-                                    width="auto"
+                                    width="80"
                                 />
                             </div>
-                            <div className="flex">
-                                <img
-                                    className="mx-auto h-8 w-fit dark:invert"
+                            <div className="flex shrink-0">
+                                <Image
+                                    className="mx-auto h-8 dark:invert"
                                     src="/clients/grupo-nazan.png"
                                     alt="GitHub Logo"
                                     height="16"
-                                    width="auto"
+                                    width="80"
                                 />
                             </div>
                         </InfiniteSlider>
