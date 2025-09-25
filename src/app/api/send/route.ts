@@ -13,6 +13,9 @@ const transporter = nodemailer.createTransport({
   tls: {
     // no usar rejectUnauthorized: false en producción a menos que entiendas el riesgo.
     // ciphers: 'TLSv1.2' // opcional si tu servidor lo requiere
+    
+    requireTLS: true,
+    tls: { minVersion: "TLSv1.2" },
   },
 });
 
@@ -235,3 +238,4 @@ function getTemplate(name: string, company: string, email: string, phone: string
   `
 
 }
+
